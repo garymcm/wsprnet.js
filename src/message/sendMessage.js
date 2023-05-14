@@ -1,7 +1,7 @@
 import amqp from 'amqplib'
 import log4js from '../logging/index.js'
 const logger = log4js.getLogger('sendMessage')
-const rabbitUrl = 'amqp://192.168.2.188'
+const rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
 
 const connection = await amqp.connect(rabbitUrl)
 const channel = await connection.createChannel()
