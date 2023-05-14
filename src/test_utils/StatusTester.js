@@ -1,5 +1,8 @@
 import sendMessage from '../message/sendMessage.js'
 import log4js from '../logging/index.js'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
 
 const logger = log4js.getLogger('StatusTester')
 

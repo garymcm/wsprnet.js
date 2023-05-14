@@ -4,7 +4,9 @@ import readline from 'readline'
 import fs from 'fs'
 import sendMessage from '../message/sendMessage.js'
 import log4js from '../logging/index.js'
+import * as dotenv from 'dotenv'
 
+dotenv.config()
 const logger = log4js.getLogger('SpotTester')
 
 // Open the file stream for reading
