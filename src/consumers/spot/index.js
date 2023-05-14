@@ -7,8 +7,9 @@ dotenv.config()
 
 const logger = log4js.getLogger('spotMessageConsumer')
 
-const queue = 'spot'
-const rabbitUrl = 'amqp://192.168.2.188'
+const queue = process.env.RABBITMQ_SPOT_QUEUE || 'spot'
+const rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
+logger.info('Connecting to rabbitmq', rabbitUrl)
 
 const conn = await amqp.connect(rabbitUrl)
 const channel = await conn.createChannel()
