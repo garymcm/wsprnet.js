@@ -1,5 +1,4 @@
 import * as dotenv from 'dotenv'
-import { Command } from 'commander'
 
 import log4js from './src/logging/index.js'
 import spotConsumer from './src/consumers/spot/index.js'
@@ -8,15 +7,12 @@ import activityConsumer from './src/consumers/activity/index.js'
 
 const logger = log4js.getLogger('main')
 
-const program = new Command()
-program.requiredOption(
-  '-t, --consumer-type <consumer type>',
-  'consumer type spot|status|actvitiy'
-)
-program.parse(process.argv)
+if (!process.env.CONSUMER_TYPE) {
+  logger.error('No consumer type specified')
+  process.exit(1)
+}
 
-const options = program.opts()
-const consumerType = options.consumerType
+const consumerType = process.env.CONSUMER_TYPE.toLowerCase()
 
 logger.info('Starting up: %s', consumerType)
 dotenv.config()
