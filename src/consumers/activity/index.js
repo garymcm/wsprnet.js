@@ -1,26 +1,33 @@
 import amqp from 'amqplib'
-import postActivity from '../../controller/activity/index.js'
+import post from '../../controller/activity/index.js'
 import log4js from '../../logging/index.js'
+import * as dotenv from 'dotenv'
 
-const queue = 'activity'
-const rabbitUrl = 'amqp://192.168.2.188'
-const logger = log4js.getLogger('activityMessageConsumer')
+export default async function activityConsumer() {
+  dotenv.config()
 
-const conn = await amqp.connect(rabbitUrl)
-const channel = await conn.createChannel()
+  const logger = log4js.getLogger('activityMessageConsumer')
 
-channel.consume(
-  queue,
-  async function (msg) {
-    if (msg.content) {
-      const status = JSON.parse(msg.content.toString())
-      const result = await postActivity(status)
-      logger.trace('postActivity result:', result)
+  const queue = process.env.RABBITMQ_SPOT_QUEUE || 'activity'
+  const rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
+
+  logger.info('Connecting to rabbitmq %s queue %s', rabbitUrl, queue)
+  const conn = await amqp.connect(rabbitUrl)
+  const channel = await conn.createChannel()
+
+  channel.consume(
+    queue,
+    async function (msg) {
+      if (msg.content) {
+        const status = JSON.parse(msg.content.toString())
+        const result = await post(status)
+        logger.trace('postActivity result:', result)
+      }
+    },
+    {
+      noAck: true,
     }
-  },
-  {
-    noAck: true,
-  }
-)
+  )
 
-logger.info('activityMessageConsumer started')
+  logger.info('activityMessageConsumer started')
+}

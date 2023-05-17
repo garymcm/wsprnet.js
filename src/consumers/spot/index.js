@@ -6,12 +6,12 @@ import * as dotenv from 'dotenv'
 export default async function spotConsumer() {
   dotenv.config()
 
-  const logger = log4js.getLogger('spotMessageConsumer')
+  const logger = log4js.getLogger('spotConsumer')
 
   const queue = process.env.RABBITMQ_SPOT_QUEUE || 'spot'
   const rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
-  logger.info('Connecting to rabbitmq %s queue %s', rabbitUrl, queue)
 
+  logger.info('Connecting to rabbitmq %s queue %s', rabbitUrl, queue)
   const conn = await amqp.connect(rabbitUrl)
   const channel = await conn.createChannel()
 
@@ -35,4 +35,5 @@ export default async function spotConsumer() {
       noAck: false,
     }
   )
+  logger.info('spotConsumer started')
 }
