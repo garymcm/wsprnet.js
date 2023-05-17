@@ -4,8 +4,8 @@ import log4js from './src/logging/index.js'
 import spotConsumer from './src/consumers/spot/index.js'
 
 const logger = log4js.getLogger('main')
-logger.info('Starting up')
 
+logger.info('Starting up')
 dotenv.config()
 
 logger.info('RABBITMQ_HOST: %s', process.env.RABBITMQ_HOST)
