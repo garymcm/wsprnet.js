@@ -30,5 +30,9 @@ export default async function statusConsumer() {
     }
   )
 
+  channel.on('error', function (err) {
+    logger.error('channel error', err)
+  })
+
   logger.info('statusConsumer started')
 }
