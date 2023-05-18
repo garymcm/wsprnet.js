@@ -1,29 +1,17 @@
 const start = process.hrtime()
-import { Command } from 'commander'
 
 import readline from 'readline'
 import fs from 'fs'
 import sendMessage from '../message/sendMessage.js'
 import log4js from '../logging/index.js'
-import * as dotenv from 'dotenv'
-dotenv.config()
+import setEnvFromArgs from './setEnvFromArgs.js'
 
-const program = new Command()
-program.option('-q, --queue <queue>', 'rabbitmq queue name', 'spot')
-program.requiredOption('-h, --rabbitmq-host <host/ip>', 'rabbitmq host name')
-program.requiredOption('-p, --rabbitmq-port <port>', 'rabbitmq port number')
-program.parse(process.argv)
-
-const options = program.opts()
-
-process.env.RABBITMQ_HOST = options.rabbitmqHost
-process.env.RABBITMQ_PORT = options.rabbitmqPort
-process.env.RABBITMQ_SPOT_QUEUE = options.queue
+const options = setEnvFromArgs()
 
 const logger = log4js.getLogger('SpotTester')
 
 // Open the file stream for reading
-const fileStream = fs.createReadStream('./misc/ALL_WSPR.TXT')
+const fileStream = fs.createReadStream(options.testFile)
 
 // Create a readline interface for the file stream
 const rl = readline.createInterface({
