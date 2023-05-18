@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wsrpnet-status-depl
+  namespace: wsprnet-rabbitmq
+  labels:
+    app: wsprnet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wsprnet
+  template:
+    metadata:
+      labels:
+        app: wsprnet
+    spec:
+      containers:
+        - name: wsprnet-status
+          image: wsprnet/consumers
+          imagePullPolicy: Never
+          env:
+            - name: CONSUMER_TYPE
+              value: status
+            - name: RABBITMQ_HOST
+              value: '172.17.0.6'
+            - name: RABBITMQ_PORT
+              value: '30672'
+            - name: RABBITMQ_SPOT_QUEUE
+              value: 'status'
