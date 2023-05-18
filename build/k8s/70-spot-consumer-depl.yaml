@@ -16,16 +16,15 @@ spec:
         app: wsprnet
     spec:
       containers:
-      - name:  wsprnet-spots
-        image: wsprnet/consumers
-        imagePullPolicy: Never
-        env:
-        - name: CONSUMER_TYPE
-          value: spot
-        - name: RABBITMQ_HOST
-          value: "172.17.0.6"
-        - name: RABBITMQ_PORT
-          value: "30672"
-        - name: RABBITMQ_SPOT_QUEUE
-          value: "spot"
-
+        - name: wsprnet-spots
+          image: wsprnet/consumers
+          imagePullPolicy: Never
+          env:
+            - name: CONSUMER_TYPE
+              value: spot
+            - name: RABBITMQ_HOST
+              value: '172.17.0.6'
+            - name: RABBITMQ_PORT
+              value: '30672'
+            - name: RABBITMQ_SPOT_QUEUE
+              value: 'spot'
