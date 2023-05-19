@@ -13,7 +13,7 @@ app.post('/post', async (req, res) => {
   const message = { ...req.body }
 
   if (!message.function) {
-    res.send('the value `function` is missing')
+    res.send('The value `function` is missing from the request body')
     return
   }
 
