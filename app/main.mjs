@@ -11,6 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post('/post', async (req, res) => {
   const message = { ...req.body }
+
+  if (!message.function) {
+    res.send('the value `function` is missing')
+    return
+  }
+
   const queue = getQueue(message.function)
   if (!queue) {
     res.send(
