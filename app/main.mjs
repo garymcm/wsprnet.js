@@ -13,7 +13,9 @@ app.post('/post', async (req, res) => {
   const message = { ...req.body }
   const queue = getQueue(message.function)
   if (!queue) {
-    res.send('Invalid function')
+    res.send(
+      `Invalid function: ${message.function}. Allowed values: wspr, wsprstat`
+    )
     return
   }
   await sendMessage(queue, req.body)
@@ -30,7 +32,7 @@ function getQueue(wsprFn) {
     case 'wspr':
       return process.env.RABBITMQ_SPOT_QUEUE
     case 'wsprstat':
-      return process.env.RABBITMQ_SPOT_QUEUE
+      return process.env.RABBITMQ_STATUS_QUEUE
     default:
       break
   }
