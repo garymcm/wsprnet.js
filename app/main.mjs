@@ -8,7 +8,15 @@ const port = 80
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.post('/', (req, res) => {
+app.post('/post', (req, res) => {
+  const message = { ...req.body }
+  //sendMessage('status', message)
+
+  console.log(message)
+  res.send('Success')
+})
+
+app.get('/post', (req, res) => {
   const message = { ...req.body }
   //sendMessage('status', message)
 
