@@ -17,16 +17,16 @@ app.post('/post', (req, res) => {
   const message = { ...req.body }
   //sendMessage('status', message)
 
-  console.log(message)
-  res.send('Success')
+  console.log('Post', message)
+  res.send('1 spot(s) added')
 })
 
 app.get('/post', (req, res) => {
   const message = { ...req.body }
   //sendMessage('status', message)
 
-  console.log(message)
-  res.send('Success')
+  console.log('Get', message)
+  res.send('1 spot(s) added')
 })
 
 app.listen(port, () => {
