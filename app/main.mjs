@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import sendMessage from '../src/message/sendMessage'
+import sendMessage from '../src/message/sendMessage.js'
 import * as dotenv from 'dotenv'
 dotenv.config()
 
