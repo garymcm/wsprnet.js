@@ -11,7 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.post('/post', async (req, res) => {
   const message = { ...req.body }
-  await sendMessage(process.env.RABBITMQ_SPOT_QUEUE, req.body)
+  const queue = getQueue(message.function)
+  if (!queue) {
+    res.send('Invalid function')
+    return
+  }
+  await sendMessage(queue, req.body)
   console.log('Posted message sent', message)
   res.send('1 spot(s) added')
 })
@@ -19,3 +24,14 @@ app.post('/post', async (req, res) => {
 app.listen(port, () => {
   console.log(`Success! Your application is running on port ${port}.`)
 })
+
+function getQueue(wsprFn) {
+  switch (wsprFn) {
+    case 'wspr':
+      return process.env.RABBITMQ_SPOT_QUEUE
+    case 'wsprstat':
+      return process.env.RABBITMQ_SPOT_QUEUE
+    default:
+      break
+  }
+}
