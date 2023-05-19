@@ -1,7 +1,5 @@
-// http://eslint.org/docs/user-guide/configuring
-
 module.exports = {
-  root: true,
+  root: false,
   env: {
     node: true,
     browser: true,
@@ -14,7 +12,6 @@ module.exports = {
     sourceType: 'module',
     ecmaVersion: 12,
   },
-  plugins: ['html'],
   globals: {},
   rules: {
     // allow paren-less arrow functions
