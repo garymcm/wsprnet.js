@@ -11,7 +11,10 @@ export default async function sendMessage(queue, message) {
     await channel.assertQueue(queue, {
       durable: true,
     })
+    logger.info('Sending message', message)
     channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)))
+    await channel.close()
+    await connection.close()
   } catch (error) {
     logger.error('Error sending message', error)
   }
