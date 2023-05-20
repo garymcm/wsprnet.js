@@ -22,6 +22,7 @@ export default class Consumer {
   constructor(name, messageProcessor) {
     if (typeof messageProcessor === 'function') {
       this.#messageProcessor = messageProcessor
+      this.#logger.trace('messageProcessor is a function')
     }
 
     if (name) {
@@ -46,10 +47,14 @@ export default class Consumer {
       this.#queue,
       async function (msg) {
         if (msg.content) {
-          const spot = JSON.parse(msg.content.toString())
-          await this.#messageProcessor(spot)
+          const msg = JSON.parse(msg.content.toString())
+          this.#logger.trace(
+            'messageProcessor is ',
+            typeof this.#messageProcessor
+          )
+          await this.#messageProcessor(msg)
           // We always ack the message, even in the event of errors. There's too
-          // many spots to DLQ them all.
+          // many spots to DLQ them.
           this.#channel.ack(msg)
         }
       },
