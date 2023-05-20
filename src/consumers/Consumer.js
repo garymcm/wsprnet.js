@@ -20,6 +20,8 @@ export default class Consumer {
   #messageProcessor = async () => {}
 
   constructor(name, messageProcessor) {
+    this.#logger = log4js.getLogger(this.#name)
+
     if (typeof messageProcessor === 'function') {
       this.#messageProcessor = messageProcessor
       this.#logger.trace('messageProcessor is a function')
@@ -28,7 +30,6 @@ export default class Consumer {
     if (name) {
       this.#name = name
     }
-    this.#logger = log4js.getLogger(this.#name)
     this.#queue = process.env.RABBITMQ_SPOT_QUEUE || 'spot'
     this.#rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
   }
