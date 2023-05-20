@@ -46,7 +46,7 @@ export default class Consumer {
     })
     this.#channel.consume(
       this.#queue,
-      async function (msg) {
+      async (msg) => {
         if (msg.content) {
           const msgJsonStr = JSON.parse(msg.content.toString())
           this.#logger.trace(
