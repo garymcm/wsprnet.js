@@ -8,7 +8,7 @@ export default async function sendMessage(queue, message) {
   try {
     const connection = await amqp.connect(rabbitUrl)
     const channel = await connection.createChannel()
-    channel.assertQueue(queue, {
+    await channel.assertQueue(queue, {
       durable: true,
     })
     channel.sendToQueue(queue, Buffer.from(JSON.stringify(message)))
