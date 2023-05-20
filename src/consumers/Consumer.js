@@ -22,14 +22,15 @@ export default class Consumer {
   constructor(name, messageProcessor) {
     this.#logger = log4js.getLogger(this.#name)
 
+    if (name) {
+      this.#name = name
+    }
+
     if (typeof messageProcessor === 'function') {
       this.#messageProcessor = messageProcessor
       this.#logger.trace('messageProcessor is a function')
     }
 
-    if (name) {
-      this.#name = name
-    }
     this.#queue = process.env.RABBITMQ_SPOT_QUEUE || 'spot'
     this.#rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
   }
