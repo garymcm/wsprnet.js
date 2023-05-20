@@ -41,6 +41,8 @@ export default async function postSpots(message) {
 
   const rows = await db('status').count('callsign as count').where(whereClause)
 
+  logger.trace('status count', rows[0])
+
   if (rows[0].count > 0) {
     logger.trace('status already exists')
     await db('status').where(whereClause).update(status.toUpdateObject())

@@ -28,7 +28,6 @@ export default class Consumer {
 
     if (typeof messageProcessor === 'function') {
       this.#messageProcessor = messageProcessor
-      this.#logger.trace('messageProcessor is a function')
     }
 
     this.#queue = process.env.RABBITMQ_SPOT_QUEUE || 'spot'
@@ -50,14 +49,13 @@ export default class Consumer {
       async (msg) => {
         if (msg.content) {
           const msgJsonStr = JSON.parse(msg.content.toString())
-          this.#logger.trace(
-            'messageProcessor is ',
-            typeof this.#messageProcessor
-          )
-          await this.#messageProcessor(msgJsonStr)
-          // We always ack the message, even in the event of errors. There's too
-          // many spots to DLQ them.
-          this.#channel.ack(msg)
+          try {
+            await this.#messageProcessor(msgJsonStr)
+          } finally {
+            // We always ack the message, even in the event of errors. There's too
+            // many spots to DLQ them.
+            this.#channel.ack(msg)
+          }
         }
       },
       {
