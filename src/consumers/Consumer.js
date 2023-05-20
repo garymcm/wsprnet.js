@@ -48,12 +48,12 @@ export default class Consumer {
       this.#queue,
       async function (msg) {
         if (msg.content) {
-          const msg = JSON.parse(msg.content.toString())
+          const msgJsonStr = JSON.parse(msg.content.toString())
           this.#logger.trace(
             'messageProcessor is ',
             typeof this.#messageProcessor
           )
-          await this.#messageProcessor(msg)
+          await this.#messageProcessor(msgJsonStr)
           // We always ack the message, even in the event of errors. There's too
           // many spots to DLQ them.
           this.#channel.ack(msg)
