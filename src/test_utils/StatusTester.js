@@ -6,7 +6,7 @@ const options = setEnvFromArgs()
 
 const logger = log4js.getLogger('StatusTester')
 
-console.log(options.jsonString)
+logger.info(options.jsonString)
 
 const message = JSON.parse(options.jsonString)
 

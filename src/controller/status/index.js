@@ -52,10 +52,7 @@ export default async function postSpots(message) {
       .toNative()
 
     logger.trace('running update', update)
-    await db('status')
-      .where(whereClause)
-      .update(status.toUpdateObject())
-      .toQuery()
+    await db('status').where(whereClause).update(status.toUpdateObject())
   } else {
     logger.trace('status does not exist')
     await db('status').insert(status.toInsertObject())
