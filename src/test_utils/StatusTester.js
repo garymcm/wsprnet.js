@@ -6,7 +6,9 @@ const options = setEnvFromArgs()
 
 const logger = log4js.getLogger('StatusTester')
 
-const message = options.jsonString
+console.log(options.jsonString)
+
+const message = JSON.parse(options.jsonString)
 
 logger.info('Sending status message')
 await sendMessage('status', message)
