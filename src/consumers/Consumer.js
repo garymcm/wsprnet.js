@@ -20,11 +20,11 @@ export default class Consumer {
   #messageProcessor = async () => {}
 
   constructor(name, messageProcessor) {
-    this.#logger = log4js.getLogger(this.#name)
-
     if (name) {
       this.#name = name
     }
+
+    this.#logger = log4js.getLogger(this.#name)
 
     if (typeof messageProcessor === 'function') {
       this.#messageProcessor = messageProcessor
