@@ -3,7 +3,6 @@ import * as dotenv from 'dotenv'
 import log4js from './src/logging/index.js'
 import spotConsumer from './src/consumers/spot/index.js'
 import statusConsumer from './src/consumers/status/index.js'
-import activityConsumer from './src/consumers/activity/index.js'
 
 const logger = log4js.getLogger('main')
 
@@ -30,9 +29,6 @@ switch (consumerType) {
     break
   case 'status':
     statusConsumer()
-    break
-  case 'activity':
-    activityConsumer()
     break
   default:
     logger.error('Invalid consumer type: %s', consumerType)
