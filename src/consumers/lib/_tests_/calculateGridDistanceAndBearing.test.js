@@ -1,3 +1,4 @@
+const { default: DistanceBearing } = require('../../../types/DistanceBearing')
 const {
   getGridDistanceAndBearing,
   grid2lat,
@@ -27,19 +28,19 @@ describe('grid distance and bearing tests', () => {
   })
 
   it('should be the correct distance', async () => {
-    expect(getGridDistanceAndBearing('JN58qc', 'IO87lp')).toEqual({
-      distance: 1430,
-      bearing: 323,
-    })
+    let result = new DistanceBearing(1430, 323)
+    expect(
+      getGridDistanceAndBearing('JN58qc', 'IO87lp').equals(result)
+    ).toBeTruthy()
 
-    expect(getGridDistanceAndBearing('JN58', 'IO87')).toEqual({
-      distance: 1366,
-      bearing: 322,
-    })
+    result = new DistanceBearing(1366, 322)
+    expect(
+      getGridDistanceAndBearing('JN58', 'IO87').equals(result)
+    ).toBeTruthy()
 
-    expect(getGridDistanceAndBearing('FN42di', 'FN42di')).toEqual({
-      distance: 0,
-      bearing: 0,
-    })
+    result = new DistanceBearing(0, 0)
+    expect(
+      getGridDistanceAndBearing('FN42di', 'FN42di').equals(result)
+    ).toBeTruthy()
   })
 })

@@ -1,3 +1,5 @@
+import DistanceBearing from '../../types/DistanceBearing.js'
+
 function deg2rad(degrees) {
   var pi = Math.PI
   return degrees * (pi / 180)
@@ -63,13 +65,22 @@ export function calculateBearing(lat1, lon1, lat2, lon2) {
   return Math.round(bearing)
 }
 
+/**
+ * Calculates the distance and bearing between two grids
+ *
+ * @export
+ * @param {*} fromGrid
+ * @param {*} toGrid
+ * @return {DistanceBearing} a distace-bearing object
+ */
 export function getGridDistanceAndBearing(fromGrid, toGrid) {
   const fromLat = grid2lat(fromGrid.toString())
   const fromLon = grid2lon(fromGrid.toString())
   const toLat = grid2lat(toGrid.toString())
   const toLon = grid2lon(toGrid.toString())
-  return {
-    distance: calculateDistance(fromLat, fromLon, toLat, toLon),
-    bearing: calculateBearing(fromLat, fromLon, toLat, toLon),
-  }
+
+  return new DistanceBearing(
+    calculateDistance(fromLat, fromLon, toLat, toLon),
+    calculateBearing(fromLat, fromLon, toLat, toLon)
+  )
 }

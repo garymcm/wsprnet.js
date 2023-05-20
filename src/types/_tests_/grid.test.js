@@ -43,4 +43,36 @@ describe('Test CallSigns class', () => {
     expect(new Grid('FN42aa').equals(new Grid('FN42ab'))).toBe(false)
     expect(new Grid('Fn42aa').equals(new Grid('FN42A'))).toBe(false)
   })
+
+  it('distance and bearing should be valid', () => {
+    const distanceBearing = new Grid('FN42aa').getDistanceBearingTo('FN42aa')
+    expect(distanceBearing.distance).toBe(0)
+    expect(distanceBearing.bearing).toBe(0)
+
+    const distanceBearing2 = new Grid('FN42aa').getDistanceBearingTo('FN42ab')
+    expect(distanceBearing2.distance).toBe(5)
+    expect(distanceBearing2.bearing).toBe(0)
+
+    const distanceBearing2a = new Grid('FN42aa').getDistanceBearingTo(
+      new Grid('FN42ab')
+    )
+    expect(distanceBearing2a.distance).toBe(5)
+    expect(distanceBearing2a.bearing).toBe(0)
+
+    const distanceBearing3 = new Grid('JN58').getDistanceBearingTo(
+      new Grid('IO87')
+    )
+    expect(distanceBearing3.distance).toBe(1366)
+    expect(distanceBearing3.bearing).toBe(322)
+  })
+
+  it('distance and bearing should be invalid', () => {
+    const distanceBearing4 = new Grid('JN58qc').getDistanceBearingTo('ZZ87lp')
+    expect(distanceBearing4).toBe(Grid.INVALID_DISTANCE_BEARING)
+
+    const distanceBearing4a = new Grid('JN58qc').getDistanceBearingTo(
+      new Grid('ZZ87lp')
+    )
+    expect(distanceBearing4a).toBe(Grid.INVALID_DISTANCE_BEARING)
+  })
 })

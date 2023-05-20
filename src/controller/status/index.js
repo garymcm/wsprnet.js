@@ -4,7 +4,6 @@ import log4js from '../../logging/index.js'
 import CallSign from '../../types/CallSign.js'
 import Grid from '../../types/Grid.js'
 import Status from '../../types/Status.js'
-import sendMessage from '../../message/sendMessage.js'
 
 const logger = log4js.getLogger('postStatus')
 
@@ -47,8 +46,5 @@ export default async function postSpots(message) {
     logger.trace('status does not exist')
     await db('status').insert(status.toInsertObject())
   }
-
-  sendMessage('activity', message)
-
   return true
 }

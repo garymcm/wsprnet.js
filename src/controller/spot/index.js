@@ -41,15 +41,10 @@ export default async function postSpots(message) {
     return
   }
 
-  const { distance, bearing } = getGridDistanceAndBearing(
-    spot.grid,
-    spot.reporterGrid
-  )
-  spot.distance = distance
-  spot.azimuth = bearing
-
+  const distanceBearing = spot.grid.getDistanceBearingTo(spot.reporterGrid)
+  spot.distance = distanceBearing.distance
+  spot.azimuth = distanceBearing.bearing
   spot.band = calculateBand(message.tqrg)
-
   spot.date = calculateUnixEpoch(message.date, message.time)
   if (!spot.date) {
     logger.warn('date is not valid: %s %s', message.date, message.time)

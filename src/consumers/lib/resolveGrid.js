@@ -7,9 +7,10 @@ const logger = log4js.getLogger('resolveGrid')
 
 export default async function resolveGrid(callSign, grid) {
   let resolvedGrid
+
   const reportedGrid = new Grid(grid)
   if (!reportedGrid.isValid) {
-    console.log('grid is not valid')
+    logger.warn('grid is not valid: %s @ %s', callSign, grid)
     return Grid.INVALID_GRID
   }
 
@@ -19,6 +20,7 @@ export default async function resolveGrid(callSign, grid) {
   } else {
     resolvedGrid = storedGrid
   }
+
   if (!storedGrid.isGrid6() && reportedGrid.isGrid6()) {
     logger.trace('recording a new grid6')
     await updateGrid6ForCallSign(callSign, reportedGrid)

@@ -1,10 +1,13 @@
 const REGEXP_VALIDATOR = /^[A-R]{2}[0-9]{2}([a-x]{2})?$/
+import { getGridDistanceAndBearing } from '../consumers/lib/calculateGridDistanceAndBearing.js'
+import DistanceBearing from './DistanceBearing.js'
 
 export default class Grid {
   #isValid = false
   #grid = ''
 
   static INVALID_GRID = new Grid('')
+  static INVALID_DISTANCE_BEARING = new DistanceBearing(0, 0)
 
   constructor(gridName) {
     let normalizedGrid = this.#normalize(gridName)
@@ -37,20 +40,15 @@ export default class Grid {
     return this.#grid === this.#normalize(otherGrid)
   }
 
-  distanceTo(otherGrid) {
+  getDistanceBearingTo(otherGrid) {
+    if (!(otherGrid instanceof Grid)) {
+      otherGrid = new Grid(otherGrid)
+    }
     if (!this.#isValid || !otherGrid.#isValid) {
-      return 0
+      return this.constructor.INVALID_DISTANCE_BEARING
     }
 
-    let fromGrid = this.toString()
-    if (fromGrid.length === 4) {
-      fromGrid += 'll'
-    }
-
-    let toGrid = otherGrid.toString()
-    if (toGrid.length === 4) {
-      toGrid += 'll'
-    }
+    return getGridDistanceAndBearing(this.#grid, otherGrid.#grid)
   }
 
   #normalize(grid) {
