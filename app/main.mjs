@@ -2,6 +2,9 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import sendMessage from '../src/message/sendMessage.js'
 import * as dotenv from 'dotenv'
+import log4js from '../src/logging/index.js'
+
+const logger = log4js.getLogger('main')
 dotenv.config()
 
 const app = express()
@@ -25,12 +28,13 @@ app.post('/post', async (req, res) => {
     return
   }
   await sendMessage(queue, req.body)
-  console.log('Posted message sent', message)
+  // must contains the string 'sports(s) added' as a signal to wsjt-x that the
+  // message was received
   res.send('1 spot(s) added')
 })
 
 app.listen(port, () => {
-  console.log(`Success! Your application is running on port ${port}.`)
+  logger.info(`Success! Your application is running on port ${port}.`)
 })
 
 function getQueue(wsprFn) {
