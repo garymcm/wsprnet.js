@@ -1,7 +1,6 @@
 import CallSign from '../../types/CallSign.js'
 import Spot from '../../types/Spot.js'
 import resolveGrid from '../../consumers/lib/resolveGrid.js'
-import { getGridDistanceAndBearing } from '../../consumers/lib/calculateGridDistanceAndBearing.js'
 import calculateBand from '../../consumers/lib/calculateBand.js'
 import db from '../../db/index.js'
 import calculateUnixEpoch from '../../consumers/lib/calculateUnixEpoch.js'

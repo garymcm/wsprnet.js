@@ -11,6 +11,8 @@ describe('Test CallSigns class', () => {
     expect(new CallSign('W1A').isValid).toBe(true)
     expect(new CallSign('SWL123456').isValid).toBe(true)
     expect(new CallSign('W1A123&1').isValid).toBe(true)
+    expect(new CallSign('SWL11234567').isValid).toBe(true)
+    expect(new CallSign('SWL1123ABC').isValid).toBe(true)
   })
 
   it('should be invalid', () => {

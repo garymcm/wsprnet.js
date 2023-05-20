@@ -33,15 +33,17 @@ export default async function postSpots(message) {
   status.power = message.dbm
   status.version = message.version
 
-  const rows = await db('status').count('callsign as count').where({
+  const whereClause = {
     callSign: status.callSign.toString(),
     band: status.band,
     grid: status.grid.toString(),
-  })
+  }
+
+  const rows = await db('status').count('callsign as count').where(whereClause)
 
   if (rows[0].count > 0) {
     logger.trace('status already exists')
-    await db('status').update(status.toUpdateObject())
+    await db('status').where(whereClause).update(status.toUpdateObject())
   } else {
     logger.trace('status does not exist')
     await db('status').insert(status.toInsertObject())
