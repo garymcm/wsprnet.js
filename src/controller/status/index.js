@@ -45,7 +45,17 @@ export default async function postSpots(message) {
 
   if (rows[0].count > 0) {
     logger.trace('status already exists')
-    await db('status').where(whereClause).update(status.toUpdateObject())
+    const update = db('status')
+      .where(whereClause)
+      .update(status.toUpdateObject())
+      .toSQL()
+      .toNative()
+
+    logger.trace('running update', update)
+    await db('status')
+      .where(whereClause)
+      .update(status.toUpdateObject())
+      .toQuery()
   } else {
     logger.trace('status does not exist')
     await db('status').insert(status.toInsertObject())
