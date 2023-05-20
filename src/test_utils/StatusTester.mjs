@@ -7,11 +7,5 @@ const logger = log4js.getLogger('StatusTester')
 const message = JSON.parse(options.jsonString)
 
 logger.info('Sending status message')
-try {
-  await sendMessage('status', message)
-  logger.info('Sent')
-} catch (error) {
-  logger.error('Error sending message', error)
-} finally {
-  process.exit(0)
-}
+await sendMessage('status', message)
+logger.info('Done')
