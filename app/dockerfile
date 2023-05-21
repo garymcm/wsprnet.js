@@ -9,5 +9,6 @@ RUN npm install --omit=dev
 
 COPY . .
 
-CMD ["node", "main.js"]
+CMD ["node", "main.mjs"]
+
 EXPOSE 5000
