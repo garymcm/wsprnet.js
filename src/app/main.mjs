@@ -1,8 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import sendMessage from '../src/message/sendMessage.js'
+import sendMessage from '../message/sendMessage.js'
 import * as dotenv from 'dotenv'
-import log4js from '../src/logging/index.js'
+import log4js from '../logging/index.js'
 
 const logger = log4js.getLogger('main')
 dotenv.config()
