@@ -25,7 +25,7 @@ export default function setEnvFromArgs() {
 
   process.env.RABBITMQ_HOST = options.rabbitmqHost
   process.env.RABBITMQ_PORT = options.rabbitmqPort
-  process.env.RABBITMQ_SPOT_QUEUE = options.queue
+  process.env.RABBITMQ_QUEUE = options.queue
 
   return options
 }

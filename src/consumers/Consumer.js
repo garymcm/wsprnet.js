@@ -30,7 +30,7 @@ export default class Consumer {
       this.#messageProcessor = messageProcessor
     }
 
-    this.#queue = process.env.RABBITMQ_SPOT_QUEUE || 'spot'
+    this.#queue = process.env.RABBITMQ_QUEUE
     this.#rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
   }
 
