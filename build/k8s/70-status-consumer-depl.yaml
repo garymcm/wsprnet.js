@@ -25,6 +25,6 @@ spec:
             - name: RABBITMQ_HOST
               value: rabbitmq #dns name of the service
             - name: RABBITMQ_PORT
-              value: '30672'
+              value: 30672
             - name: RABBITMQ_QUEUE
               value: 'status'
