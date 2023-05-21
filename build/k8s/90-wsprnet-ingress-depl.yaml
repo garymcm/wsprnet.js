@@ -21,7 +21,7 @@ spec:
           imagePullPolicy: Never
           env:
             - name: APP_LISTEN_PORT
-              value: 5000
+              value: '5000'
             - name: RABBITMQ_HOST
               value: rabbitmq #dns name of the service
             - name: RABBITMQ_PORT
