@@ -4,7 +4,7 @@ ENV NODE_ENV=production
 COPY . .
 
 WORKDIR ./src/app
-COPY ["package.json", "package-lock.json*", "./app"]
+COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install --omit=dev
 
 CMD ["node", "./src/app/main.mjs"]
