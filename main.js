@@ -18,15 +18,12 @@ if (!process.env.RABBITMQ_QUEUE) {
 
 const consumerType = process.env.CONSUMER_TYPE.toLowerCase()
 
-logger.info('Starting up: %s', consumerType)
+logger.info('Starting up a Consumer of type: %s', consumerType)
 dotenv.config()
 
 logger.info('RABBITMQ_HOST: %s', process.env.RABBITMQ_HOST)
 logger.info('RABBITMQ_PORT: %s', process.env.RABBITMQ_PORT)
-logger.info(
-  'Starting a consumer, listening on [%s]',
-  process.env.RABBITMQ_QUEUE
-)
+logger.info('The consumer is bound to queue: %s', process.env.RABBITMQ_QUEUE)
 
 switch (consumerType) {
   case 'spot':
