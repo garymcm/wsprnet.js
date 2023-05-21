@@ -23,7 +23,7 @@ spec:
             - name: APP_LISTEN_PORT
               value: 5000
             - name: RABBITMQ_HOST
-              value: '172.17.0.6'
+              value: rabbitmq #dns name of the service
             - name: RABBITMQ_PORT
               value: '30672'
             - name: RABBITMQ_QUEUE

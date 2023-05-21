@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: wsprnet-ingress-ingress
+  namespace: wsprnet-rabbitmq
+spec:
+  rules:
+    - host: wsrpnet.org
+      http:
+        paths:
+          - backend:
+              serviceName: wsprnet-ingress-service
+              servicePort: 80
