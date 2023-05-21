@@ -1,0 +1,12 @@
+FROM node:18-alpine
+ENV NODE_ENV=production
+
+COPY . .
+
+WORKDIR ./src/app
+COPY ["package.json", "package-lock.json*", "./app"]
+RUN npm install --omit=dev
+
+CMD ["node", "./src/app/main.mjs"]
+
+EXPOSE 5000
