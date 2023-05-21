@@ -1,12 +1,14 @@
+# syntax=docker/dockerfile:1
+
 FROM node:18-alpine
 ENV NODE_ENV=production
 
-COPY . .
+WORKDIR .
 
-WORKDIR ./src/app
 COPY ["package.json", "package-lock.json*", "./"]
+
 RUN npm install --omit=dev
 
-CMD ["node", "./main.mjs"]
+COPY . .
 
-EXPOSE 5000
+CMD ["node", "main_ingress.js"]
