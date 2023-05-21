@@ -8,7 +8,7 @@ const logger = log4js.getLogger('main')
 dotenv.config()
 
 const app = express()
-const port = 5000
+const port = 80
 
 app.use(bodyParser.urlencoded({ extended: false }))
 

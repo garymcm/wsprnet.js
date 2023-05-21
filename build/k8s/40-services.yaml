@@ -21,8 +21,3 @@ spec:
       nodePort: 30672
   selector:
     app: rabbitmq
----
-kind: Service
-apiVersion: v1
-metadata:
-  namespace: wsprnet-rabbitmq
