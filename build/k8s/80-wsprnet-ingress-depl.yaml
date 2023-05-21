@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wsrpnet-status-depl
+  name: wsrpnet-ingress-depl
   namespace: wsprnet-rabbitmq
   labels:
     app: wsprnet
@@ -16,15 +16,15 @@ spec:
         app: wsprnet
     spec:
       containers:
-        - name: wsprnet-status
-          image: wsprnet/consumers
+        - name: wsprnet-ingress
+          image: wsprnet/ingress
           imagePullPolicy: Never
           env:
-            - name: CONSUMER_TYPE
-              value: status
+            - name: APP_LISTEN_PORT
+              value: 5000
             - name: RABBITMQ_HOST
-              value: rabbitmq #dns name of the service
+              value: '172.17.0.6'
             - name: RABBITMQ_PORT
               value: '30672'
             - name: RABBITMQ_QUEUE
-              value: 'status'
+              value: 'spot'

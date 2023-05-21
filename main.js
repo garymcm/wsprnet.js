@@ -11,8 +11,8 @@ if (!process.env.CONSUMER_TYPE) {
   process.exit(1)
 }
 
-if (!process.env.RABBITMQ_SPOT_QUEUE) {
-  logger.error('No consumer type specified')
+if (!process.env.RABBITMQ_QUEUE) {
+  logger.error('No queue specified for consumer')
   process.exit(1)
 }
 
@@ -25,7 +25,7 @@ logger.info('RABBITMQ_HOST: %s', process.env.RABBITMQ_HOST)
 logger.info('RABBITMQ_PORT: %s', process.env.RABBITMQ_PORT)
 logger.info(
   'Starting a consumer, listening on [%s]',
-  process.env.RABBITMQ_SPOT_QUEUE
+  process.env.RABBITMQ_QUEUE
 )
 
 switch (consumerType) {
