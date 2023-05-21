@@ -23,7 +23,7 @@ spec:
             - name: CONSUMER_TYPE
               value: spot
             - name: RABBITMQ_HOST
-              value: rabbitmq #dns name of the service
+              value: rabbitmq-0.rabbitmq.wsprnet-rabbitmq.svc.cluster.local #dns name of the service #dns name of the service
             - name: RABBITMQ_PORT
               value: '30672'
             - name: RABBITMQ_QUEUE
