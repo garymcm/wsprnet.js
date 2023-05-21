@@ -5,9 +5,10 @@ metadata:
   namespace: wsprnet-rabbitmq
 spec:
   rules:
-    - host: wsrpnet.org
-      http:
+    - http:
         paths:
           - backend:
-              serviceName: wsprnet-ingress-service
-              servicePort: 80
+              service:
+                name: wsprnet-ingress-service
+                port:
+                  number: 80
