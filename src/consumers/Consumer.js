@@ -31,7 +31,7 @@ export default class Consumer {
     }
 
     this.#queue = process.env.RABBITMQ_QUEUE
-    this.#rabbitUrl = `amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
+    this.#rabbitUrl = `amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
     this.#logger.info('rabbitmq url:', this.#rabbitUrl) // TODO remove this because it reveals PASSWORD
   }
 
