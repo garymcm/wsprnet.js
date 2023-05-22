@@ -28,3 +28,12 @@ spec:
               value: '5672'
             - name: RABBITMQ_QUEUE
               value: 'spot'
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: wsprnet-default-user
+                  key: username
+            - name: RABBITMQ_PASSWORD
+                secretKeyRef:
+                  name: wsprnet-default-user
+                  key: password
