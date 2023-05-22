@@ -3,7 +3,7 @@ import log4js from '../logging/index.js'
 const logger = log4js.getLogger('sendMessage')
 
 export default async function sendMessage(queue, message) {
-  const rabbitUrl = `amqp://${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
+  const rabbitUrl = process.env.RABBITMQ_URL
   logger.info('Connecting to rabbitmq', rabbitUrl)
   let connection
   try {
