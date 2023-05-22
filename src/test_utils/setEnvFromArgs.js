@@ -13,7 +13,7 @@ export default function setEnvFromArgs() {
   const program = new Command()
   program.option('-q, --queue <queue>', 'rabbitmq queue name', 'spot')
   program.requiredOption(
-    '-u, --rabbitmq-URL <host/ip>',
+    '-u, --rabbitmq-url <host/ip>',
     'rabbitmq host name, e.g. ampq//:foo:bar@localhost:5672'
   )
   program.option('-f, --test-file <file>', 'test file path for test data')
@@ -23,7 +23,7 @@ export default function setEnvFromArgs() {
   )
   program.parse(process.argv)
   const options = program.opts()
-  process.env.RABBITMQ_URL = options.queue
+  process.env.RABBITMQ_URL = options.rabbitmqUrl
 
   return options
 }
