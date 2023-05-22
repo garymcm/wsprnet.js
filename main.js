@@ -22,6 +22,7 @@ logger.info('Starting up a Consumer of type: %s', consumerType)
 dotenv.config()
 
 logger.info('RABBITMQ_HOST: %s', process.env.RABBITMQ_HOST)
+logger.info('RABBITMQ_USERNAME: %s', process.env.RABBITMQ_USERNAME)
 logger.info('RABBITMQ_PORT: %s', process.env.RABBITMQ_PORT)
 logger.info('The consumer is bound to queue: %s', process.env.RABBITMQ_QUEUE)
 
