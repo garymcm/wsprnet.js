@@ -7,6 +7,9 @@ spec:
   image: rabbitmq:3.9.7-management
   replicas: 3
   service:
-    type: LoadBalancer
-    nodePort: 30672
-    
+    ports:
+      - name: amqp
+        protocol: TCP
+        port: 5672
+        targetPort: 5672
+        nodePort: 30672
