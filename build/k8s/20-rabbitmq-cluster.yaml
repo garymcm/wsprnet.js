@@ -8,6 +8,7 @@ spec:
   replicas: 2
   override:
     service:
-      type: LoadBalancer
-      externalIPs:
-        - 192.168.2.188
+      spec:
+        type: LoadBalancer
+        externalIPs:
+          - 192.168.2.188
