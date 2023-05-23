@@ -5,6 +5,7 @@ metadata:
   namespace: wsprnet-rabbitmq
   labels:
     app: wsprnet
+    role: consumer
 spec:
   replicas: 1
   selector:

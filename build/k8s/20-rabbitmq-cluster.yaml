@@ -3,3 +3,8 @@ kind: RabbitmqCluster
 metadata:
   name: wsprnet
   namespace: wsprnet-rabbitmq
+spec:
+  image: rabbitmq:3.9.7-management
+  replicas: 3
+  service:
+    type: NodePort
