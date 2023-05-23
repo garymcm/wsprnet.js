@@ -7,4 +7,6 @@ spec:
   image: rabbitmq:3.9.7-management
   replicas: 3
   service:
-    type: NodePort
+    type: LoadBalancer
+    nodePort: 30672
+    
