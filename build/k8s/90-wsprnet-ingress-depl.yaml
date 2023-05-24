@@ -1,11 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wsprnet-spot-depl
+  name: wsprnet-ingress-depl
   namespace: wsprnet-rabbitmq
   labels:
     app: wsprnet
-    role: consumer
 spec:
   replicas: 1
   selector:
@@ -17,8 +16,8 @@ spec:
         app: wsprnet
     spec:
       containers:
-        - name: wsprnet-spots
-          image: wsprnet/consumers
+        - name: wsprnet-ingress
+          image: wsprnet/ingress
           imagePullPolicy: Never
           resources:
             limits:
@@ -28,14 +27,16 @@ spec:
             memory: 256Mi
             cpu: '0.2'
           env:
-            - name: CONSUMER_TYPE
-              value: spot
+            - name: RABBITMQ_STATUS_QUEUE
+              value: 'status'
+            - name: RABBITMQ_SPOT_QUEUE
+              value: 'spot'
+            - name: APP_LISTEN_PORT
+              value: '5000'
             - name: RABBITMQ_HOST
               value: wsprnet.wsprnet-rabbitmq.svc.cluster.local #dns name of the service #dns name of the service
             - name: RABBITMQ_PORT
               value: '5672'
-            - name: RABBITMQ_QUEUE
-              value: 'spot'
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
