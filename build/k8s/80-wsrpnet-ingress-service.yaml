@@ -5,7 +5,7 @@ metadata:
   namespace: wsprnet-rabbitmq
 spec:
   selector:
-    app: wsprnet
+    app: wsprnet-ingress
   ports:
     - port: 80
       targetPort: 5000
