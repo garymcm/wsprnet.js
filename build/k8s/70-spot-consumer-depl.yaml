@@ -20,10 +20,6 @@ spec:
         - name: wsprnet-spots
           image: wsprnet/consumers
           imagePullPolicy: Never
-          resources:
-            limits:
-              memory: 50Mi
-              cpu: '1'
           env:
             - name: CONSUMER_TYPE
               value: spot
