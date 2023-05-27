@@ -5,3 +5,4 @@ metadata:
   namespace: ingress-nginx
 data:
   5672: 'wsprnet-rabbitmq/wsprnet:5672'
+  15672: 'wsprnet-rabbitmq/wsprnet:15672'
