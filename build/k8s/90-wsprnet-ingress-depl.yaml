@@ -4,7 +4,7 @@ metadata:
   name: wsprnet-ingress-depl
   namespace: wsprnet-rabbitmq
   labels:
-    app: wsprnet
+    app: wsprnet-ingress
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
   template:
     metadata:
       labels:
-        app: wsprnet-ingress
+        app: wsprnet
     spec:
       containers:
         - name: wsprnet-ingress
