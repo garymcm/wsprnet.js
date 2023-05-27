@@ -6,7 +6,9 @@ metadata:
 spec:
   selector:
     app: wsprnet-ingress
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 5000
+      nodePort: 30000
   type:
