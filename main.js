@@ -26,6 +26,8 @@ logger.info('RABBITMQ_USERNAME: %s', process.env.RABBITMQ_USERNAME)
 logger.info('RABBITMQ_PORT: %s', process.env.RABBITMQ_PORT)
 logger.info('The consumer is bound to queue: %s', process.env.RABBITMQ_QUEUE)
 
+process.env.RABBITMQ_URL = `amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}`
+
 switch (consumerType) {
   case 'spot':
     spotConsumer()

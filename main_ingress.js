@@ -7,6 +7,8 @@ import log4js from './src/logging/index.js'
 const logger = log4js.getLogger('main')
 dotenv.config()
 
+process.env.RABBITMQ_URL = `amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}`
+
 const app = express()
 const port = process.env.APP_LISTEN_PORT || 80
 
