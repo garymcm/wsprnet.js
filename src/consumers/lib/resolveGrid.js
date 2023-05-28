@@ -2,6 +2,7 @@ import Grid from '../../types/Grid.js'
 import getGrid6ForCallSign from '../../db/grid/getGrid6ForCallSign.js'
 import updateGrid6ForCallSign from '../../db/grid/updateGrid6ForCallSign.js'
 import log4js from '../../logging/index.js'
+import sendMessage from '../../message/sendMessage.js'
 
 const logger = log4js.getLogger('resolveGrid')
 
@@ -23,7 +24,10 @@ export default async function resolveGrid(callSign, grid) {
 
   if (!storedGrid.isGrid6() && reportedGrid.isGrid6()) {
     logger.trace('recording a new grid6')
-    await updateGrid6ForCallSign(callSign, reportedGrid)
+    sendMessage('grid6', {
+      callSign: callSign.toString(),
+      grid: reportedGrid.toString(),
+    })
   }
   return resolvedGrid
 }

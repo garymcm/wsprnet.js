@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wsprnet-consumer-config
+  namespace: wsprnet-rabbitmq
+data:
+  RABBITMQ_HOST: 'wsprnet.wsprnet-rabbitmq.svc.cluster.local'
+  RABBITMQ_PORT: '5672'
