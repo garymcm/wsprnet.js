@@ -9,11 +9,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wsprnet
+      app: wsprnet-ingress
   template:
     metadata:
       labels:
-        app: wsprnet
+        app: wsprnet-ingress
     spec:
       containers:
         - name: wsprnet-ingress
