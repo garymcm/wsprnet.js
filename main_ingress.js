@@ -12,6 +12,10 @@ const port = process.env.APP_LISTEN_PORT || 80
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 app.post('/post', async (req, res) => {
   const message = { ...req.body }
 
