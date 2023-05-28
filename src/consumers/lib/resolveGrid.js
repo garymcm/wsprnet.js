@@ -1,6 +1,5 @@
 import Grid from '../../types/Grid.js'
 import getGrid6ForCallSign from '../../db/grid/getGrid6ForCallSign.js'
-import updateGrid6ForCallSign from '../../db/grid/updateGrid6ForCallSign.js'
 import log4js from '../../logging/index.js'
 import sendMessage from '../../message/sendMessage.js'
 
