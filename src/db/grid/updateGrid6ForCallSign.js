@@ -21,4 +21,7 @@ export default function updateGrid6ForCallSign(callSign, grid) {
     .catch((err) => {
       logger.error('Error updating grid6', err)
     })
+    .then(() => {
+      logger.trace('Updated grid6 for %s @ %s', callSign, grid)
+    })
 }

@@ -5,6 +5,6 @@ const logger = log4js.getLogger('postGrid6')
 
 export default async function postSpots(message) {
   const { callSign, grid } = message
-  logger.trace('postGrid6: %s @ %s', callSign, grid)
+  logger.trace('Updating new Grid6 for %s @ %s', callSign, grid)
   return updateGrid6ForCallSign(callSign, grid)
 }
