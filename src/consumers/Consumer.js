@@ -54,7 +54,7 @@ export default class Consumer {
             await this.#messageProcessor(msgJsonStr)
           } finally {
             // We always ack the message, even in the event of errors. There's too
-            // many spots to DLQ them.
+            // many records to DLQ them.
             this.#channel.ack(msg)
           }
         }

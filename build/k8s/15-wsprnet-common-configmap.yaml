@@ -8,6 +8,7 @@ data:
   RABBITMQ_HOST: wsprnet.wsprnet-rabbitmq.svc.cluster.local
   #default port for k8s rabbitmq Operator
   RABBITMQ_PORT: '5672'
-  RABBITMQ_STATUS_QUEUE: status
+  #default queue names
+  RABBITMQ_STATUS_QUEUE: 'status'
   RABBITMQ_SPOT_QUEUE: 'spot'
   RABBITMQ_GRID6_QUEUE: 'grid6'
