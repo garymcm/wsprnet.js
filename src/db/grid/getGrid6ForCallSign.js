@@ -7,7 +7,7 @@ export default function getGrid6(call) {
     .where('CallSign', call)
     .then((result) => {
       if (result.length === 0) {
-        return new Grid('')
+        return Grid.INVALID_GRID
       }
       return new Grid(result[0].grid)
     })
