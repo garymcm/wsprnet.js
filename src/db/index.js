@@ -1,6 +1,9 @@
 import knex from 'knex'
 import yn from 'yn'
 import * as dotenv from 'dotenv'
+import log4js from '../logging'
+
+const logger = log4js.getLogger('db')
 
 dotenv.config()
 
@@ -31,6 +34,14 @@ const db = knex({
     propagateCreateError: false,
     reapIntervalMillis: 1000,
   },
+})
+
+db.client.pool.on('createFail', (eventId, err) => {
+  logger.error('db connection createFail', eventId, err)
+})
+
+db.client.pool.on('createSuccess', (eventId, resource) => {
+  logger.info('db connection createSuccess', eventId, resource)
 })
 
 export default db
