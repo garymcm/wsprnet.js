@@ -42,12 +42,12 @@ const db = knex({
   },
 })
 
-db.client.pool.on('createFail', (eventId, err) => {
-  logger.error('db connection createFail', eventId, err)
-})
+// db.client.pool.on('createFail', (eventId, err) => {
+//   logger.error('db connection createFail', eventId, err)
+// })
 
-db.client.pool.on('createSuccess', (eventId, resource) => {
-  logger.info('db connection createSuccess', eventId, resource)
-})
+// db.client.pool.on('createSuccess', (eventId, resource) => {
+//   logger.info('db connection createSuccess', eventId, resource)
+// })
 
 export default db
