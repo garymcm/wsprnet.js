@@ -26,7 +26,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: wsprnet-common-config
-          envFrom:
             - configMapRef:
                 name: wsprnet-ingress-config
           env:
