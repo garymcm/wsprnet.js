@@ -39,7 +39,6 @@ const db = knex({
   ...baseConfig,
   pool: {
     ...poolConfig,
-    propagateCreateError: false,
     reapIntervalMillis: 1000,
   },
 })
