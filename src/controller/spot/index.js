@@ -10,7 +10,7 @@ const logger = log4js.getLogger('postSpots')
 
 let count = 0
 
-export default async function postSpots(message) {
+export default async function post(message) {
   logger.trace('postSpots', count++)
   const thisSpotId = count
 

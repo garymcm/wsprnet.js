@@ -7,7 +7,7 @@ import Status from '../../types/Status.js'
 
 const logger = log4js.getLogger('postStatus')
 
-export default async function postSpots(message) {
+export default async function post(message) {
   const status = new Status()
 
   const statusCallSign = new CallSign(message.rcall)

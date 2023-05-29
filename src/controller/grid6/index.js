@@ -3,7 +3,7 @@ import log4js from '../../logging/index.js'
 
 const logger = log4js.getLogger('postGrid6')
 
-export default async function postSpots(message) {
+export default async function post(message) {
   const { callSign, grid } = message
   logger.trace('Updating new Grid6 for %s @ %s', callSign, grid)
   return updateGrid6ForCallSign(callSign, grid)
