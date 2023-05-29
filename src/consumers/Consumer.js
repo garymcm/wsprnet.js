@@ -58,6 +58,8 @@ export default class Consumer {
           const msgJsonStr = JSON.parse(msg.content.toString())
           try {
             await this.#messageProcessor(msgJsonStr)
+          } catch (error) {
+            this.#logger.error('Error processing message', error)
           } finally {
             // We always ack the message, even in the event of errors. There's too
             // many records to DLQ them.
