@@ -32,7 +32,6 @@ export default class Consumer {
 
     this.#queue = process.env.RABBITMQ_QUEUE
     this.#rabbitUrl = `amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}:${process.env.RABBITMQ_PORT}`
-    this.#logger.info('rabbitmq url:', this.#rabbitUrl) // TODO remove this because it reveals PASSWORD
   }
 
   async start() {
@@ -40,10 +39,17 @@ export default class Consumer {
     await this.connect()
   }
 
-  async consume() {
+  /**
+   * Start listening for messages
+   *
+   * @param {*} [queueOptions={}]
+   * @memberof Consumer
+   */
+  async consume(queueOptions = {}) {
     this.#channel = await this.#conn.createChannel()
     this.#channel.assertQueue(this.#queue, {
       durable: true,
+      ...queueOptions,
     })
     this.#channel.consume(
       this.#queue,

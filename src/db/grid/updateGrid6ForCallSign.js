@@ -1,5 +1,7 @@
 import db from '../index.js'
+import log4js from '../../logging/index.js'
 
+const logger = log4js.getLogger('updateGrid6ForCallSign')
 /**
  * Update the `grid6` table for the given call sign and grid.
  *
@@ -16,4 +18,7 @@ export default function updateGrid6ForCallSign(callSign, grid) {
     })
     .onConflict('CallSign')
     .merge()
+    .catch((err) => {
+      logger.error('Error updating grid6', err)
+    })
 }
