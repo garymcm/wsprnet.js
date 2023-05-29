@@ -13,6 +13,7 @@ logger.info('DATABASE_PORT:', process.env.DATABASE_PORT)
 logger.info('DATABASE_NAME:', process.env.DATABASE_NAME)
 logger.info('DATABASE_POOL:', process.env.DATABASE_POOL)
 logger.info('DATABASE_USERNAME:', process.env.DATABASE_USERNAME)
+logger.info('DATABASE_PASSWORD:', process.env.DATABASE_PASSWORD)
 
 const baseConfig = {
   client: process.env.DATABASE_DIALECT,
