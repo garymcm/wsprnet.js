@@ -9,6 +9,9 @@ dotenv.config()
 
 logger.info('DATABASE_DIALECT:', process.env.DATABASE_DIALECT)
 logger.info('DATABASE_HOSTNAME:', process.env.DATABASE_HOST)
+logger.info('DATABASE_PORT:', process.env.DATABASE_PORT)
+logger.info('DATABASE_NAME:', process.env.DATABASE_NAME)
+logger.info('DATABASE_USERNAME:', process.env.DATABASE_USERNAME)
 
 const baseConfig = {
   client: process.env.DATABASE_DIALECT,
