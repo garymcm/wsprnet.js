@@ -1,7 +1,7 @@
 import knex from 'knex'
 import yn from 'yn'
 import * as dotenv from 'dotenv'
-import log4js from '../logging'
+import log4js from '../logging/index.js'
 
 const logger = log4js.getLogger('db')
 
