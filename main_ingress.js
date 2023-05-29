@@ -3,14 +3,17 @@ import bodyParser from 'body-parser'
 import sendMessage from './src/message/sendMessage.js'
 import * as dotenv from 'dotenv'
 import log4js from './src/logging/index.js'
+import morgan from 'morgan'
 
-const logger = log4js.getLogger('main')
+const logger = log4js.getLogger('main_ingress')
 dotenv.config()
 
 process.env.RABBITMQ_URL = `amqp://${process.env.RABBITMQ_USERNAME}:${process.env.RABBITMQ_PASSWORD}@${process.env.RABBITMQ_HOST}`
 
 const app = express()
-const port = process.env.APP_LISTEN_PORT || 80
+app.use(morgan('combined'))
+
+const port = process.env.APP_LISTEN_PORT || 5000
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
