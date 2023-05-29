@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wsprnet-common-config
+  namespace: wsprnet-rabbitmq
+data:
+  #dns name of the service
+  RABBITMQ_HOST: wsprnet.wsprnet-rabbitmq.svc.cluster.local
+  #default port for k8s rabbitmq Operator
+  RABBITMQ_PORT: '5672'
+  RABBITMQ_STATUS_QUEUE: status
+  RABBITMQ_SPOT_QUEUE: 'spot'
+  RABBITMQ_GRID6_QUEUE: 'grid6'

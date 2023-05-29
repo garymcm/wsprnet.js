@@ -23,17 +23,13 @@ spec:
             limits:
               memory: 512Mi
               cpu: '1'
+          envFrom:
+            - configMapRef:
+                name: wsprnet-common-config
+          envFrom:
+            - configMapRef:
+                name: wsprnet-ingress-config
           env:
-            - name: RABBITMQ_STATUS_QUEUE
-              value: 'status'
-            - name: RABBITMQ_SPOT_QUEUE
-              value: 'spot'
-            - name: APP_LISTEN_PORT
-              value: '5000'
-            - name: RABBITMQ_HOST
-              value: wsprnet.wsprnet-rabbitmq.svc.cluster.local #dns name of the service #dns name of the service
-            - name: RABBITMQ_PORT
-              value: '5672'
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wsprnet-ingress-config
+  namespace: wsprnet-rabbitmq
+data:
+  APP_LISTEN_PORT: '5000'

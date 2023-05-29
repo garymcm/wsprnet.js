@@ -4,5 +4,17 @@ metadata:
   name: wsprnet-consumer-config
   namespace: wsprnet-rabbitmq
 data:
-  RABBITMQ_HOST: 'wsprnet.wsprnet-rabbitmq.svc.cluster.local'
-  RABBITMQ_PORT: '5672'
+  DATABASE_HOST: 192.168.2.188
+  DATABASE_PORT: 3306
+  DATABASE_NAME: wsprnetjs
+  DATABASE_DIALECT: mysql
+  DATABASE_TZ: +00:00
+  DATABASE_POOL: yes
+  DATABASE_POOL_ACQUIRE: 1200000
+  DATABASE_POOL_EVICT: 1000
+  DATABASE_POOL_IDLE: 10000
+  DATABASE_POOL_MAX: 16
+  DATABASE_POOL_MIN: 2
+  # Not used
+  DATABASE_SSL_ENABLED: no
+  DATABASE_LOGGING: No
