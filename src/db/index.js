@@ -39,11 +39,11 @@ const db = knex({
   },
 })
 
-db.pool.on('createFail', (eventId, err) => {
+db.client.pool.on('createFail', (eventId, err) => {
   logger.error('db connection createFail', eventId, err)
 })
 
-db.pool.on('createSuccess', (eventId, resource) => {
+db.client.pool.on('createSuccess', (eventId, resource) => {
   logger.info('db connection createSuccess', eventId, resource)
 })
 
