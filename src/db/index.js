@@ -7,13 +7,13 @@ const logger = log4js.getLogger('db')
 
 dotenv.config()
 
-logger.info('DATABASE_DIALECT:', process.env.DATABASE_DIALECT)
-logger.info('DATABASE_HOSTNAME:', process.env.DATABASE_HOST)
-logger.info('DATABASE_PORT:', process.env.DATABASE_PORT)
-logger.info('DATABASE_NAME:', process.env.DATABASE_NAME)
-logger.info('DATABASE_POOL:', process.env.DATABASE_POOL)
-logger.info('DATABASE_USERNAME:', process.env.DATABASE_USERNAME)
-logger.info('DATABASE_PASSWORD:', process.env.DATABASE_PASSWORD)
+logger.debug('DATABASE_DIALECT:', process.env.DATABASE_DIALECT)
+logger.debug('DATABASE_HOSTNAME:', process.env.DATABASE_HOST)
+logger.debug('DATABASE_PORT:', process.env.DATABASE_PORT)
+logger.debug('DATABASE_NAME:', process.env.DATABASE_NAME)
+logger.debug('DATABASE_POOL:', process.env.DATABASE_POOL)
+logger.debug('DATABASE_USERNAME:', process.env.DATABASE_USERNAME)
+logger.debug('DATABASE_PASSWORD:', process.env.DATABASE_PASSWORD)
 
 const baseConfig = {
   client: process.env.DATABASE_DIALECT,
@@ -43,12 +43,12 @@ const db = knex({
   },
 })
 
-// db.client.pool.on('createFail', (eventId, err) => {
-//   logger.error('db connection createFail', eventId, err)
-// })
+db.client.pool.on('createFail', (eventId, err) => {
+  logger.error('db connection createFail', eventId, err)
+})
 
-// db.client.pool.on('createSuccess', (eventId, resource) => {
-//   logger.info('db connection createSuccess', eventId, resource)
-// })
+db.client.pool.on('createSuccess', (eventId, resource) => {
+  logger.info('db connection createSuccess', eventId, resource)
+})
 
 export default db
