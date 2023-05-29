@@ -11,17 +11,16 @@ const logger = log4js.getLogger('updateGrid6ForCallSign')
  * @return {*}
  */
 export default async function updateGrid6ForCallSign(callSign, grid) {
-  return db('grid6')
-    .insert({
-      CallSign: callSign,
-      Grid: grid,
-    })
-    .onConflict('CallSign')
-    .merge()
-    .catch((err) => {
-      logger.error('Error updating grid6', err)
-    })
-    .then(() => {
-      logger.trace('Updated grid6 for %s @ %s', callSign, grid)
-    })
+  try {
+    await db('grid6')
+      .insert({
+        CallSign: callSign,
+        Grid: grid,
+      })
+      .onConflict('CallSign')
+      .merge()
+    logger.trace('Updated grid6 for %s @ %s', callSign, grid)
+  } catch (error) {
+    logger.error('Error updating grid6', error)
+  }
 }
