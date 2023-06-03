@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: wsprnet-consumer-config
-  namespace: wsprnet-rabbitmq
+  namespace: wsprnet
 data:
   DATABASE_HOST: '192.168.2.188'
   DATABASE_PORT: '3306'

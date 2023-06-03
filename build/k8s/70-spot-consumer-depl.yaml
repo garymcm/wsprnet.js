@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wsprnet-spot-depl
-  namespace: wsprnet-rabbitmq
+  namespace: wsprnet
   labels:
     app: wsprnet
     role: consumer
@@ -43,10 +43,10 @@ spec:
             - name: DATABASE_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: wsprnet-rabbitmq-secrets
+                  name: wsprnet-secrets
                   key: database-username
             - name: DATABASE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: wsprnet-rabbitmq-secrets
+                  name: wsprnet-secrets
                   key: database-password
