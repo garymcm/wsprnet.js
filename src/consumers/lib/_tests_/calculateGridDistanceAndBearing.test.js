@@ -1,4 +1,5 @@
-const { default: DistanceBearing } = require('../../../types/DistanceBearing')
+import DistanceBearing from '../../../types/DistanceBearing'
+
 const {
   getGridDistanceAndBearing,
   grid2lat,
