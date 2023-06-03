@@ -22,10 +22,13 @@ spec:
           imagePullPolicy: Never
           envFrom:
             - configMapRef:
+                name: wsprnet-common-config
+            - configMapRef:
                 name: wsprnet-consumer-config
           env:
             - name: CONSUMER_TYPE
-              value: status
+              value: 'status'
+            - name: RABBITMQ_QUEUE
               value: 'status'
             - name: RABBITMQ_USERNAME
               valueFrom:
@@ -37,3 +40,13 @@ spec:
                 secretKeyRef:
                   name: wsprnet-default-user
                   key: password
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: wsprnet-rabbitmq-secrets
+                  key: database-username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wsprnet-rabbitmq-secrets
+                  key: database-password

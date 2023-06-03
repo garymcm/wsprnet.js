@@ -27,7 +27,7 @@ spec:
                 name: wsprnet-consumer-config
           env:
             - name: CONSUMER_TYPE
-              value: spot
+              value: 'spot'
             - name: RABBITMQ_QUEUE
               value: 'spot'
             - name: RABBITMQ_USERNAME
