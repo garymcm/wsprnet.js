@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: wsprnet-ingress-service
-  namespace: wsprnet-rabbitmq
+  namespace: wsprnet
 spec:
   type: NodePort
   selector:

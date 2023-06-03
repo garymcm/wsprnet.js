@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: wsprnet-ingress-depl
-  namespace: wsprnet-rabbitmq
+  namespace: wsprnet
   labels:
     app: wsprnet-ingress
 spec:
