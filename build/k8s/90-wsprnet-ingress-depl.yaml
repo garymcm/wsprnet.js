@@ -32,10 +32,10 @@ spec:
             - name: RABBITMQ_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: wsprnet-default-user
+                  name: rabbitmq-cluster-default-user
                   key: username
             - name: RABBITMQ_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: wsprnet-default-user
+                  name: rabbitmq-cluster-default-user
                   key: password
