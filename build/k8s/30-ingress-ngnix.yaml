@@ -4,5 +4,5 @@ metadata:
   name: tcp-services
   namespace: ingress-nginx
 data:
-  5672: 'wsprnet-rabbitmq/wsprnet:5672'
-  30672: 'wsprnet-rabbitmq/wsprnet:15672'
+  5672: 'wsprnet/rabbitmq-cluster:5672'
+  30672: 'wsprnet/rabbitmq-cluster:15672'
