@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wsprnet-ingress-ingress
+  name: wsprnet-post-ingress
   namespace: wsprnet
 spec:
   rules:
@@ -11,6 +11,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: wsprnet-ingress-service
+                name: wsprnet-post-service
                 port:
                   number: 80

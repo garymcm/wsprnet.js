@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wsprnet-ingress-depl
+  name: wsprnet-post-depl
   namespace: wsprnet
   labels:
-    app: wsprnet-ingress
+    app: wsprnet-post
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wsprnet-ingress
+      app: wsprnet-post
   template:
     metadata:
       labels:
-        app: wsprnet-ingress
+        app: wsprnet-post
     spec:
       containers:
-        - name: wsprnet-ingress
+        - name: wsprnet-post
           image: wsprnet/ingress
           imagePullPolicy: Never
           resources:
