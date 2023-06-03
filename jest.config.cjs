@@ -4,4 +4,8 @@ module.exports = {
   testPathIgnorePatterns: ['e2e'],
   moduleFileExtensions: ['js', 'jsx', 'tsx', 'ts'],
   modulePaths: ['<rootDir>'],
+  transform: {
+    '^.+\\.jsx?$': 'babel-jest',
+  },
+  transformIgnorePatterns: ['node_modules/(?!@yn)/'],
 }
