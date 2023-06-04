@@ -8,12 +8,8 @@ import log4js from '../../logging/index.js'
 
 const logger = log4js.getLogger('postSpots')
 
-let count = 0
-
 export default async function post(message) {
-  logger.trace('postSpots', count++)
-  const thisSpotId = count
-
+  logger.trace('postSpots')
   const spot = new Spot()
 
   spot.reporter = new CallSign(message.rcall)
@@ -52,7 +48,7 @@ export default async function post(message) {
 
   if (spot.date > Date.now() / 1000) {
     logger.warn('date is in the future: %s %s', message.date, message.time)
-    return count
+    return
   }
 
   // Straight copy from reporting client message
@@ -65,5 +61,4 @@ export default async function post(message) {
   spot.power = message.dbm
 
   await db('spots').insert(spot.toInsertObject())
-  return thisSpotId
 }
