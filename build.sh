@@ -29,11 +29,11 @@ build_status_consumer() {
 
 build_upload_consumer() {
 	docker build . -t wsprnet/consumers -f Dockerfile
-	kubectl delete -f build/k8s/70-status-consumer-depl.yaml
-	kubectl apply -f build/k8s/70-status-consumer-depl.yaml
+	kubectl delete -f build/k8s/70-upload-consumer-depl.yaml
+	kubectl apply -f build/k8s/70-upload-consumer-depl.yaml
 }
 
-while getopts "istg" opt; do
+while getopts "istgu" opt; do
 	case $opt in
 	i) build_wsprnet_ingress ;;
 	s) build_spot_consumer ;;
