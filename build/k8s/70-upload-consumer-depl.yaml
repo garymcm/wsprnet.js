@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wsprnet-upload-depl
+  namespace: wsprnet
+  labels:
+    app: wsprnet
+    role: consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wsprnet
+  template:
+    metadata:
+      labels:
+        app: wsprnet
+    spec:
+      containers:
+        - name: wsprnet-status
+          image: wsprnet/consumers
+          imagePullPolicy: Never
+          envFrom:
+            - configMapRef:
+                name: wsprnet-common-config
+            - configMapRef:
+                name: wsprnet-consumer-config
+          env:
+            - name: CONSUMER_TYPE
+              value: 'upload'
+            - name: RABBITMQ_QUEUE
+              value: 'upload'
+            - name: RABBITMQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-cluster-default-user
+                  key: username
+            - name: RABBITMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: rabbitmq-cluster-default-user
+                  key: password
+            - name: DATABASE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: wsprnet-secrets
+                  key: database-username
+            - name: DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: wsprnet-secrets
+                  key: database-password

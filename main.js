@@ -4,6 +4,7 @@ import log4js from './src/logging/index.js'
 import spotConsumer from './src/consumers/spot/index.js'
 import statusConsumer from './src/consumers/status/index.js'
 import grid6Consumer from './src/consumers/grid6/index.js'
+import uploadConsumer from './src/consumers/upload/index.js'
 
 const logger = log4js.getLogger('main')
 
@@ -38,6 +39,9 @@ switch (consumerType) {
     break
   case 'grid6':
     grid6Consumer()
+    break
+  case 'upload':
+    uploadConsumer()
     break
   default:
     logger.error('Invalid consumer type: %s', consumerType)
