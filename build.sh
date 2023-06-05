@@ -39,7 +39,7 @@ while getopts "istgu" opt; do
 	s) build_spot_consumer ;;
 	t) build_status_consumer ;;
 	g) build_grid6_consumer ;;
-	u) build_grid6_consumer ;;
+	u) build_upload_consumer ;;
 	*)
 		echo 'error' >&2
 		exit 1
