@@ -9,6 +9,7 @@ data:
   #default port for k8s rabbitmq Operator
   RABBITMQ_PORT: '5672'
   #default queue names
-  RABBITMQ_STATUS_QUEUE: 'status'
-  RABBITMQ_SPOT_QUEUE: 'spot'
   RABBITMQ_GRID6_QUEUE: 'grid6'
+  RABBITMQ_SPOT_QUEUE: 'spot'
+  RABBITMQ_STATUS_QUEUE: 'status'
+  RABBITMQ_UPLOAD_QUEUE: 'upload'

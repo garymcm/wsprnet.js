@@ -4,6 +4,7 @@ import resolveGrid from '../../consumers/lib/resolveGrid.js'
 import calculateBand from '../../consumers/lib/calculateBand.js'
 import db from '../../db/index.js'
 import calculateUnixEpoch from '../../consumers/lib/calculateUnixEpoch.js'
+import getMode from '../../consumers/lib/getMode.js'
 import log4js from '../../logging/index.js'
 
 const logger = log4js.getLogger('postSpots')
@@ -53,12 +54,12 @@ export default async function post(message) {
 
   // Straight copy from reporting client message
   spot.version = message.version
-  spot.code = message.mode
   spot.dB = message.sig
   spot.mhz = message.tqrg
   spot.drift = message.drift
   spot.dt = message.dt
   spot.power = message.dbm
+  spot.code = getMode(message.mode)
 
   await db('spots').insert(spot.toInsertObject())
 }
